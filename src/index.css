@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@source "./**/*.{js,ts,jsx,tsx,mdx}";
+
+/* 
+  Estilos base para la librería de componentes.
+  Aquí podemos sobrescribir comportamientos globales que AntD no cubra.
+*/
+@layer base {
+  :root {
+    --sf-primary: #1890ff;
+  }
+}
