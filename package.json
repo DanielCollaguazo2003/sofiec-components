@@ -1,7 +1,6 @@
 {
   "name": "sofiec-components",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -79,5 +78,15 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "antd": "^6.0.0"
-  }
+  },
+  "description": "Librería de componentes React orientada a finanzas y basada en Ant Design",
+  "author": "Tu Nombre o Empresa",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "finance",
+    "fintech",
+    "ant-design",
+    "components"
+  ]
 }

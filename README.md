@@ -1,75 +1,81 @@
-# React + TypeScript + Vite
+# Sofiec Components 🏦
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Version](https://img.shields.io/npm/v/sofiec-components?style=flat-square&color=1890ff)
+![License](https://img.shields.io/npm/l/sofiec-components?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue?style=flat-square)
 
-Currently, two official plugins are available:
+Librería de componentes UI orientada a aplicaciones financieras y Fintech, construida sobre **React**, **Ant Design** y acelerada con **TailwindCSS v4**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Desarrollada para ofrecer soluciones modulares como validación estricta de divisas, estandarización de componentes de Ant Design mediante Design Tokens y soporte multi-idioma (i18next).
 
-## React Compiler
+---
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## ⚙️ Instalación
 
-Note: This will impact Vite dev & build performances.
+Asegúrate de instalar `sofiec-components` junto con sus peer dependencies en tu proyecto React o Vite:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install sofiec-components react react-dom antd
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Uso Rápido
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Para utilizar los componentes y que funcionen con el tema financiero correcto, primero debes envolver tu aplicación con el `SFConfigProvider`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```tsx
+import { SFConfigProvider, SfButton, SfInputCurrency } from 'sofiec-components';
+// Si el entorno requiere inyección del CSS precompilado de la librería:
+import 'sofiec-components/style.css'; 
+
+function App() {
+  return (
+    <SFConfigProvider>
+      <div className="p-8 max-w-sm mx-auto">
+        <h2 className="text-xl font-bold mb-4">Nueva Transferencia</h2>
+        
+        {/* Componentes Fintech Modulares */}
+        <SfInputCurrency 
+          currency="USD"
+          placeholder="0.00"
+          className="mb-4"
+        />
+
+        <SfButton type="primary" className="w-full">
+          Transferir Fondos
+        </SfButton>
+      </div>
+    </SFConfigProvider>
+  );
+}
+
+export default App;
 ```
+
+## ✨ Arquitectura y Ecosistema Incluido
+
+Sofiec Components está diseñado bajo estándares *Clean Architecture* e incluye soporte nativo y directo para integraciones complejas:
+
+- **Tailwind Integrado:** Totalmente compatible. Aplica clases `utility` directamente en la propiedad `className` de los componentes nativos.
+- **`SfInputCurrency`:** Utiliza internamente librerías numéricas seguras (`big.js`) para evitar problemas de _floating-point_ durante transacciones financieras.
+- **Preparado para i18n:** Soporte de traducciones multimoneda desde su core.
+- **`SfSelect` Avanzado:** Optimizados por defecto para buscar eficientemente dentro de grandes diccionarios bancarios.
+
+## 💻 Desarrollo Local (Librería)
+
+Si estás contribuyendo a la librería y deseas previsualizar componentes de forma aislada, el proyecto utiliza **Storybook**.
+
+```bash
+# Instalar dependencias del repositorio
+npm install
+
+# Levantar entorno de previsualización
+npm run storybook
+```
+
+Si deseas generar el Build publicable localmente:
+```bash
+npm run build
+```
+
+---
+**Desarrollado con ❤️ para entornos de alta fiabilidad financiera.**

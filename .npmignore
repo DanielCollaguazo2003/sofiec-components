@@ -1,0 +1,22 @@
+# Repositorio
+.git
+.github
+
+# Dependencias
+node_modules
+
+# Código Fuente y Tests
+src/
+tests/
+.storybook/
+vite.config.ts
+tailwind.config.ts
+tsconfig*.json
+eslint.config.js
+*.log
+
+# Archivos de la IA local
+.gemini/
+
+# El directorio public si no se exportan assets directamente
+public/
