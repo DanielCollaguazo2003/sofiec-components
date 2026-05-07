@@ -25,7 +25,7 @@ export const SfSelect = <T = any>({
     <Select
       {...defaultSearchProps}
       {...props}
-      className={twMerge('w-full', className)}
+      className={twMerge('w-full transition-opacity transition-transform duration-300 ease-out', className)}
     />
   );
 };

@@ -21,7 +21,10 @@ export const SfInputCurrency = (props: ISfInputCurrencyProps) => {
       onChange={handleChange}
       onBlur={handleBlur}
       prefix={<span className="text-gray-400 mr-1">{currentCurrency}</span>}
-      className={twMerge('rounded-lg text-right!', className)}
+      className={twMerge(
+        'rounded-lg text-right! transition-opacity transition-transform duration-300 ease-out focus:-translate-y-0.5',
+        className,
+      )}
     />
   );
 };

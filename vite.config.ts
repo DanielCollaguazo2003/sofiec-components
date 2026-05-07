@@ -1,9 +1,8 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
-import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import dts from 'vite-plugin-dts';
-import babel from '@rolldown/plugin-babel';
 
 // https://vite.dev/config/
 import path from 'node:path';
@@ -17,17 +16,15 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     react(), 
-    dts({ include: ['src'], tsconfigPath: './tsconfig.app.json' }),
-    babel({
-      presets: [reactCompilerPreset()]
-    })
+    dts({ include: ['src'], tsconfigPath: './tsconfig.app.json' })
   ],
   build: {
     lib: {
       entry: path.resolve(dirname, 'src/index.ts'),
       name: 'SofiecComponents',
       formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format}.js`
+      cssFileName: 'style',
+      fileName: (format) => format === 'es' ? 'index.es.js' : 'index.cjs'
     },
     rollupOptions: {
       // Externalize deps that shouldn't be bundled

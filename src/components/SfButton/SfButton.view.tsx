@@ -11,7 +11,10 @@ export const SfButton = ({ isLoading, children, className, ...props }: ISfButton
     <Button 
       {...props} 
       loading={isLoading} 
-      className={twMerge('rounded-lg shadow-sm font-medium transition-all duration-200', className)}
+      className={twMerge(
+        'rounded-xl font-medium transition-opacity transition-transform duration-300 ease-out hover:opacity-95 hover:scale-[1.02] active:opacity-90 active:scale-[0.98]',
+        className,
+      )}
     >
       {children}
     </Button>
