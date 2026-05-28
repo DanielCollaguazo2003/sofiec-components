@@ -2,6 +2,10 @@ import './index.css';
 
 export * from './components/SfButton';
 export * from './components/SfCard';
+export * from './components/SfMetricCard';
+export * from './components/SfDataTable';
+export * from './components/SfActionMenu';
+export * from './components/SfFormModal';
 export * from './components/SfInputCurrency';
 export * from './components/SfSelect';
 export * from './components/Forms';
