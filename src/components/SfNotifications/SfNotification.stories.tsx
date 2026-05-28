@@ -1,45 +1,49 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SFConfigProvider } from '../../theme/ConfigProvider';
-import { SfNotification } from './SfNotification';
+import { NotificationsProvider } from './NotificationsProvider';
 import { SfButton } from '../SfButton/SfButton.view';
+import { useNotification } from '../../hooks';
 
 const withProvider = (Story: React.FC) => (
   <SFConfigProvider>
-    <div style={{ padding: 24 }}>
-      <Story />
-    </div>
+    <NotificationsProvider>
+      <div style={{ padding: 24 }}>
+        <Story />
+      </div>
+    </NotificationsProvider>
   </SFConfigProvider>
 );
 
 const Demo: React.FC = () => {
+  const { openNotificationWithIcon, destroy } = useNotification();
+
   const openInfo = () =>
-    SfNotification.info({ message: 'Información', description: 'Mensaje informativo.' });
+    openNotificationWithIcon({ type: 'info', message: 'Información', description: 'Mensaje informativo.' });
 
   const openSuccess = () =>
-    SfNotification.success({ message: 'Éxito', description: 'Operación completada correctamente.' });
+    openNotificationWithIcon({ type: 'success', message: 'Éxito', description: 'Operación completada correctamente.' });
 
-  const openError = () => SfNotification.error({ message: 'Error', description: 'Algo salió mal.' });
+  const openError = () =>
+    openNotificationWithIcon({ type: 'error', message: 'Error', description: 'Algo salió mal.' });
 
   const openWarning = () =>
-    SfNotification.warning({ message: 'Atención', description: 'Toma precauciones.' });
+    openNotificationWithIcon({ type: 'warning', message: 'Atención', description: 'Toma precauciones.' });
 
   const openCustom = () =>
-    SfNotification.open({
+    openNotificationWithIcon({
+      type: 'info',
       message: 'Personalizado',
       description: 'Acción con botón',
       btn: (
-        <SfButton type="primary" onClick={() => SfNotification.destroy()}>
+        <SfButton type="primary" onClick={() => destroy()}>
           Cerrar todas
         </SfButton>
       ),
     });
 
-  const [api, contextHolder] = SfNotification.useNotification();
-
   return (
     <div style={{ display: 'grid', gap: 12, maxWidth: 640 }}>
-      {contextHolder}
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         <SfButton onClick={openInfo}>Info</SfButton>
         <SfButton onClick={openSuccess} type="primary">
@@ -59,12 +63,10 @@ const Demo: React.FC = () => {
       <div>
         <h4>Hook-based</h4>
         <div style={{ display: 'flex', gap: 8 }}>
-          <SfButton
-            onClick={() => api.open({ message: 'Desde hook', description: 'Usando useNotification' })}
-          >
+          <SfButton onClick={() => openNotificationWithIcon({ type: 'info', message: 'Desde hook', description: 'Usando useNotification' })}>
             Abrir via hook
           </SfButton>
-          <SfButton onClick={() => api.success({ message: 'OK', description: 'Hook success' })} type="primary">
+          <SfButton onClick={() => openNotificationWithIcon({ type: 'success', message: 'OK', description: 'Hook success' })} type="primary">
             Hook success
           </SfButton>
         </div>

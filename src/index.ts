@@ -9,4 +9,5 @@ export * from './components/AuthLayoutContainer';
 export * from './components/Layout';
 export * from './theme/ConfigProvider';
 export * from './theme/tokens';
+export * from './hooks';
 export * from './i18n';
