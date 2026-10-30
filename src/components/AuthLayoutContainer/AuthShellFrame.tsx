@@ -11,7 +11,7 @@ export const AuthShellFrame = ({ children, className, style }: AuthShellFramePro
   return (
     <main
       className={twMerge(
-        'relative min-h-screen w-full overflow-x-hidden bg-[#f6f7fb]',
+        'relative min-h-screen w-full bg-[#f6f7fb]',
         className,
       )}
       style={style}
@@ -21,7 +21,7 @@ export const AuthShellFrame = ({ children, className, style }: AuthShellFramePro
         <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-green-100/40 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto flex min-h-screen max-w-295 flex-col z-10">
+      <div className="relative flex min-h-screen w-full flex-col z-10">
         {children}
       </div>
     </main>

@@ -26,3 +26,6 @@ dist-ssr
 *storybook.log
 storybook-static
 sofiec-components-*
+
+.agents
+skills-lock.json

@@ -1,6 +1,6 @@
 {
   "name": "sofiec-components",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "create-package": "pnpm build && pnpm pack"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",

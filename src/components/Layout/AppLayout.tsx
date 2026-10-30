@@ -15,6 +15,10 @@ export interface AppLayoutProps {
   children: ReactNode;
   className?: string;
   contentClassName?: string;
+  sidebarBrandName?: string;
+  sidebarBrandLabel?: string;
+  sidebarLogoSrc?: string;
+  sidebarLogoAlt?: string;
   breadcrumbs?: string[];
   notificationsCount?: number;
   sidebarHeaderSlot?: ReactNode;
@@ -33,6 +37,10 @@ export const AppLayout = ({
   children,
   className,
   contentClassName,
+  sidebarBrandName = 'Sofiec Workspace',
+  sidebarBrandLabel = 'Panel',
+  sidebarLogoSrc = 'src/assets/AppLogo/sofiec_logo_app.png',
+  sidebarLogoAlt = 'Sofiec',
   breadcrumbs,
   notificationsCount,
   sidebarHeaderSlot,
@@ -66,8 +74,23 @@ export const AppLayout = ({
     return match.trail.map((entry) => entry.label);
   }, [activeKey, breadcrumbs, navigation]);
 
+  const sidebarBrandSlot = (
+    <div className={twMerge('flex items-center gap-3', isDesktopSidebarCollapsed && 'justify-center gap-0')}>
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-200">
+        <img src={sidebarLogoSrc} alt={sidebarLogoAlt} className="h-6 w-6 object-contain" />
+      </span>
+
+      {!isDesktopSidebarCollapsed && (
+        <div className="min-w-0">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sf-text-secondary">{sidebarBrandName}</p>
+          <h2 className="text-lg font-semibold tracking-tight text-sf-text-main">{sidebarBrandLabel}</h2>
+        </div>
+      )}
+    </div>
+  );
+
   return (
-    <div className={twMerge('relative flex min-h-screen bg-transparent text-sf-text-main', className)}>
+    <div className={twMerge('relative flex h-screen bg-transparent text-sf-text-main', className)}>
       <Sidebar
         className="hidden md:flex"
         navigation={navigation}
@@ -77,10 +100,11 @@ export const AppLayout = ({
         onNavigate={(item) => {
           onNavigate?.(item);
         }}
+        brandSlot={sidebarBrandSlot}
         headerSlot={sidebarHeaderSlot}
       />
 
-      <div className="flex min-h-screen min-w-0 flex-1 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col">
         <Navbar
           breadcrumbs={resolvedBreadcrumbs}
           user={user}
@@ -93,7 +117,7 @@ export const AppLayout = ({
           onLogoutClick={onLogoutClick}
         />
 
-        <main className={twMerge('flex-1 p-4 md:p-8', contentClassName)}>{children}</main>
+        <main className={twMerge('flex-1 overflow-y-auto p-4 md:p-8', contentClassName)}>{children}</main>
       </div>
 
       {isMobileSidebarOpen && (
