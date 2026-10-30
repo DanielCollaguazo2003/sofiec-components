@@ -75,17 +75,17 @@ export const AppLayout = ({
   }, [activeKey, breadcrumbs, navigation]);
 
   const sidebarBrandSlot = (
-    <div className={twMerge('flex items-center gap-3', isDesktopSidebarCollapsed && 'justify-center gap-0')}>
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-200">
-        <img src={sidebarLogoSrc} alt={sidebarLogoAlt} className="h-6 w-6 object-contain" />
+    <div className="flex h-10 max-w-48 items-center gap-3 whitespace-nowrap">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+        <img src={sidebarLogoSrc} alt={sidebarLogoAlt} className="h-5 w-5 object-contain" />
       </span>
 
-      {!isDesktopSidebarCollapsed && (
-        <div className="min-w-0">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sf-text-secondary">{sidebarBrandName}</p>
-          <h2 className="text-lg font-semibold tracking-tight text-sf-text-main">{sidebarBrandLabel}</h2>
-        </div>
-      )}
+      <div className="min-w-0">
+        <p className="truncate text-[11px] font-semibold uppercase tracking-[0.24em] text-sf-text-secondary">
+          {sidebarBrandName}
+        </p>
+        <h2 className="truncate text-lg font-semibold tracking-tight text-sf-text-main">{sidebarBrandLabel}</h2>
+      </div>
     </div>
   );
 
