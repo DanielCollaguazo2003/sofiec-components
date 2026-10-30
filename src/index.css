@@ -1,13 +1,269 @@
 @import "tailwindcss";
 
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
 @source "./**/*.{js,ts,jsx,tsx,mdx}";
 
-/* 
-  Estilos base para la librería de componentes.
-  Aquí podemos sobrescribir comportamientos globales que AntD no cubra.
-*/
+@theme {
+  --font-sans: "Inter", -apple-system, "SF Pro Display", "Roboto", sans-serif;
+  
+  --color-sf-primary: #1890FF;
+  --color-sf-bg-light: #F2F2F7;
+  --color-sf-text-main: #1D1D1F;
+  --color-sf-text-secondary: #86868B;
+  --color-sf-border: #D1D1D6;
+
+  /* Pills/Categories */
+  --color-sf-food-bg: #e8f5e9;
+  --color-sf-food-text: #2e7d32;
+  --color-sf-health-bg: #e3f2fd;
+  --color-sf-health-text: #1565c0;
+  --color-sf-education-bg: #f1f5f9;
+  --color-sf-education-text: #334155;
+
+  /* Shadows */
+  --shadow-sf-card: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
 @layer base {
-  :root {
-    --sf-primary: #1890ff;
+  body {
+    @apply font-sans;
+    color: var(--color-sf-text-main);
+  }
+}
+
+@layer components {
+  .ant-input,
+  .ant-input-affix-wrapper,
+  .ant-input-number,
+  .ant-picker,
+  .ant-select-selector,
+  .ant-btn {
+    transition-property: opacity, transform, box-shadow, border-color, background-color, color;
+    transition-duration: 260ms;
+    transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .ant-btn:not(:disabled):hover {
+    opacity: 0.95;
+    transform: scale(1.02);
+  }
+
+  .ant-btn:not(:disabled):active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+
+  .ant-input:focus,
+  .ant-input-focused,
+  .ant-input-affix-wrapper-focused,
+  .ant-select-focused .ant-select-selector,
+  .ant-picker-focused {
+    box-shadow: 0 0 0 4px rgb(24 144 255 / 18%) !important;
+    transform: translateY(-1px);
+  }
+
+  .sf-data-table {
+    background: transparent;
+  }
+
+  .sf-data-table .ant-table {
+    background: transparent;
+  }
+
+  .sf-data-table .ant-table-container {
+    overflow: hidden;
+    border-radius: 1.5rem;
+    background: color-mix(in srgb, white 92%, transparent);
+    box-shadow: var(--shadow-sf-card);
+    backdrop-filter: blur(14px);
+  }
+
+  .sf-data-table .ant-table-thead > tr > th {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-sf-border) 42%, transparent);
+    background: transparent;
+    color: var(--color-sf-text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .sf-data-table .ant-table-tbody > tr > td {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-sf-border) 26%, transparent);
+    color: var(--color-sf-text-main);
+  }
+
+  .sf-data-table .ant-table-tbody > tr:hover > td {
+    background: color-mix(in srgb, var(--color-sf-bg-light) 72%, transparent);
+  }
+
+  .sf-data-table .ant-pagination {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .sf-data-table .ant-pagination-item,
+  .sf-data-table .ant-pagination-item-link {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .sf-data-table .ant-pagination-item-active {
+    background: color-mix(in srgb, var(--color-sf-primary) 10%, white);
+  }
+
+  .sf-action-menu-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--color-sf-text-secondary);
+    box-shadow: none;
+  }
+
+  .sf-action-menu-trigger:not(:disabled):hover {
+    color: var(--color-sf-text-main);
+    background: color-mix(in srgb, var(--color-sf-bg-light) 72%, transparent);
+    transform: scale(1.05);
+  }
+
+  .sf-action-menu-trigger:not(:disabled):active {
+    transform: scale(0.96);
+  }
+
+  .sf-action-menu-overlay .ant-dropdown-menu {
+    overflow: hidden;
+    padding: 0.5rem;
+    border: 0;
+    border-radius: 1.25rem;
+    background: color-mix(in srgb, white 82%, transparent);
+    box-shadow: var(--shadow-sf-card);
+    backdrop-filter: blur(20px);
+  }
+
+  .sf-action-menu-overlay .ant-dropdown-menu-item {
+    border-radius: 0.875rem;
+    padding-inline: 0.75rem;
+    padding-block: 0.5rem;
+  }
+
+  .sf-action-menu-overlay .ant-dropdown-menu-item-icon {
+    color: var(--color-sf-text-secondary);
+  }
+
+  .sf-form-modal .ant-modal-content {
+    overflow: hidden;
+    border-radius: 1.5rem;
+    background: color-mix(in srgb, white 95%, transparent);
+    box-shadow: var(--shadow-sf-card);
+    backdrop-filter: blur(16px);
+  }
+
+  .sf-form-modal .ant-modal-header {
+    margin-bottom: 0;
+    border-bottom: 0;
+    background: transparent;
+  }
+
+  .sf-form-modal .ant-modal-title {
+    color: var(--color-sf-text-main);
+  }
+
+  .sf-form-modal .ant-modal-body {
+    padding: 0;
+  }
+
+  .sf-form-modal .ant-modal-footer {
+    margin-top: 0;
+    border-top: 0;
+    background: transparent;
+  }
+
+  .sf-form-modal-body {
+    padding: 1.5rem;
+  }
+
+  .sf-rise-bar {
+    transform-origin: bottom;
+    animation: sf-rise 1.4s ease-out infinite alternate;
+  }
+
+  .sf-rise-delay-1 {
+    animation-delay: 120ms;
+  }
+
+  .sf-rise-delay-2 {
+    animation-delay: 240ms;
+  }
+
+  .sf-float-soft {
+    animation: sf-float-soft 3s ease-in-out infinite;
+  }
+
+  .sf-float-delay {
+    animation-delay: 400ms;
+  }
+
+  .sf-expand-orb {
+    animation: sf-expand-orb 2.8s ease-out infinite;
+  }
+
+  .sf-expand-delay-1 {
+    animation-delay: 300ms;
+  }
+
+  .sf-expand-delay-2 {
+    animation-delay: 600ms;
+  }
+}
+
+@keyframes sf-rise {
+  from {
+    transform: scaleY(0.74);
+    opacity: 0.7;
+  }
+
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes sf-float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes sf-expand-orb {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+
+  65% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.9);
+    opacity: 0.75;
   }
 }
